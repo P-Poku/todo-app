@@ -2,11 +2,33 @@
   box-sizing: border-box;
 }
 
+/* Farben als Variablen: hell (Standard) */
+:root {
+  --bg: #f4f5f7;
+  --text: #222;
+  --muted: #999;
+  --card-bg: #fff;
+  --border: #e2e4e8;
+  --input-bg: #fff;
+  --input-border: #ccc;
+}
+
+/* Farben im dunklen Modus */
+body.dark {
+  --bg: #121418;
+  --text: #e6e7ea;
+  --muted: #7c818b;
+  --card-bg: #1e2127;
+  --border: #2e323a;
+  --input-bg: #1e2127;
+  --input-border: #3a3f48;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: #f4f5f7;
-  color: #222;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .container {
@@ -15,8 +37,26 @@ body {
   padding: 0 16px;
 }
 
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 h1 {
-  text-align: center;
+  margin: 0 0 20px;
+}
+
+#theme-btn {
+  margin-bottom: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
 }
 
 .input-row {
@@ -28,8 +68,10 @@ h1 {
   flex: 1;
   padding: 10px 12px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border);
   border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text);
 }
 
 #add-btn {
@@ -58,8 +100,8 @@ h1 {
   gap: 8px;
   padding: 10px 12px;
   margin-bottom: 8px;
-  background: #fff;
-  border: 1px solid #e2e4e8;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: 6px;
 }
 
@@ -77,7 +119,7 @@ h1 {
 
 .todo-text.done {
   text-decoration: line-through;
-  color: #999;
+  color: var(--muted);
 }
 
 .delete-btn {
