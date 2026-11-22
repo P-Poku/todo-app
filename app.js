@@ -80,3 +80,37 @@ input.addEventListener("keydown", (e) => {
 });
 
 render();
+
+// Dunkler Modus: Umschalter und gespeicherte Auswahl
+const THEME_KEY = "theme";
+const themeBtn = document.getElementById("theme-btn");
+
+function applyTheme(dark) {
+  document.body.classList.toggle("dark", dark);
+  themeBtn.textContent = dark ? "Heller Modus" : "Dunkler Modus";
+  themeBtn.setAttribute("aria-pressed", String(dark));
+}
+
+function loadTheme() {
+  try {
+    return localStorage.getItem(THEME_KEY) === "dark";
+  } catch {
+    return false;
+  }
+}
+
+function saveTheme(dark) {
+  try {
+    localStorage.setItem(THEME_KEY, dark ? "dark" : "light");
+  } catch {
+    // Speicher nicht verfügbar — Auswahl gilt nur bis zum Neuladen.
+  }
+}
+
+themeBtn.addEventListener("click", () => {
+  const dark = !document.body.classList.contains("dark");
+  applyTheme(dark);
+  saveTheme(dark);
+});
+
+applyTheme(loadTheme());
