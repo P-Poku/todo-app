@@ -3,6 +3,7 @@ const STORAGE_KEY = "todos";
 const input = document.getElementById("todo-input");
 const addBtn = document.getElementById("add-btn");
 const list = document.getElementById("todo-list");
+const clearDoneBtn = document.getElementById("clear-done-btn");
 
 let todos = loadTodos();
 
@@ -48,6 +49,9 @@ function render() {
     li.append(checkbox, span, del);
     list.appendChild(li);
   });
+
+  // Button nur zeigen, wenn es erledigte Aufgaben gibt
+  clearDoneBtn.hidden = !todos.some((t) => t.done);
 }
 
 function addTodo() {
@@ -74,7 +78,16 @@ function deleteTodo(id) {
   render();
 }
 
+// Alle erledigten Aufgaben auf einmal entfernen
+// (alte Aufgaben ohne "done" gelten als nicht erledigt und bleiben)
+function clearCompleted() {
+  todos = todos.filter((t) => !t.done);
+  saveTodos();
+  render();
+}
+
 addBtn.addEventListener("click", addTodo);
+clearDoneBtn.addEventListener("click", clearCompleted);
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") addTodo();
 });
