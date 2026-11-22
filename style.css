@@ -135,3 +135,19 @@ h1 {
 .delete-btn:hover {
   background: #dc2626;
 }
+
+#clear-done-btn {
+  display: block;
+  margin: 12px 0 0 auto;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+#clear-done-btn[hidden] {
+  display: none;
+}
